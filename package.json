@@ -1,0 +1,16 @@
+{
+  "name": "playwrightexamplelocalhost",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "http_server_start": "node server.js",
+    "pw_server_start": "npx playwright run-server --max-clients 1 --port 49858"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.32.3"
+  }
+}
