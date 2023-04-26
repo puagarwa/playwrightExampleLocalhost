@@ -4,6 +4,12 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+    inputs:
+      hostname:
+        required: true
+        type: string
+        description: "HTTP Server hostname"
+        default: '127.0.0.1'
 jobs:
   test:
     timeout-minutes: 60
@@ -12,7 +18,7 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
@@ -23,7 +29,7 @@ jobs:
       run: |
         npx playwright test
       env:
-        LOCALlHTTPSERVERURL: 'localhost'
+        LOCALlHTTPSERVERURL: ${{ github.event.inputs.hostname }}
     - uses: actions/upload-artifact@v3
       if: always()
       with:
